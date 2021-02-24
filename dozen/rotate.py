@@ -276,7 +276,7 @@ def set_overlap(rr_objs):
 
         """
 
-        return max([zz.gps_times.max() for zz in rr_objs_list])
+        return min([zz.gps_times.max() for zz in rr_objs_list])
 
     def get_overlaps(rr_obj, start, end):
         """
@@ -370,7 +370,7 @@ def rotate_df(df):
             #             (z1.gps_times.astype(np.int)==z3.gps_times.astype(np.int)).all()]), 'gps times mismatch'
 
             # synchronize data
-            set_overlap(z1, z2, z3)
+            set_overlap([z1, z2, z3])
 
             # form rotation matrix
             # scale = util.radian_conversion_factor('degrees')
