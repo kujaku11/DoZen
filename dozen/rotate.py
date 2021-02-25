@@ -286,14 +286,14 @@ def set_overlap(rr_objs):
 
         overlaps = np.zeros_like(rr_obj.flag_positions, dtype=np.bool_)
         overlaps[np.where((rr_obj.gps_times >= start) &
-                          rr_obj.gps_time <= end)] = True
+                          (rr_obj.gps_times <= end))] = True
         return overlaps
 
     latest_start = get_min_time(rr_objs)
     earliest_end = get_max_time(rr_objs)
 
-    for zz in rr_objs:
-        rr_objs.valid_records = get_overlaps(zz, latest_start, earliest_end)
+    for rr_obj in rr_objs:
+        rr_obj.valid_records = get_overlaps(rr_obj, latest_start, earliest_end)
 
     # overlaps_1 = [True]*len(z1.flag_positions)
     # overlaps_2 = [True]*len(z2.flag_positions)
